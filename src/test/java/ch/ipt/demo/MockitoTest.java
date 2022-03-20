@@ -1,3 +1,5 @@
+package ch.ipt.demo;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -11,7 +13,7 @@ import static org.mockito.Mockito.*;
  * <a href="https://www.baeldung.com/mockito-annotations">Baeldung</a>
  * <a href="https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html">Javadoc.io</a>
  */
-public class MockitoTest {
+class MockitoTest {
 
 	@Test
 	void verifyTest() {

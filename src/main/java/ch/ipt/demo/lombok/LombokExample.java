@@ -1,4 +1,4 @@
-package lombok;
+package ch.ipt.demo.lombok;
 
 import lombok.*;
 

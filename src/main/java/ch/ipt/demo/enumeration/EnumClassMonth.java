@@ -1,11 +1,11 @@
-package enumeration;
+package ch.ipt.demo.enumeration;
 
 /**
  * Separate Enum Class
  */
 public enum EnumClassMonth {
-	Jan,
-	Feb,
-	Mrz,
-	Dez;
+	JAN,
+	FEB,
+	MRZ,
+	DEZ
 }

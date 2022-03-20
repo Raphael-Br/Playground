@@ -1,18 +1,18 @@
-package enumeration;// Class with Enum Constructor
+package ch.ipt.demo.enumeration;// Class with Enum Constructor
 
 public class EnumInsideClassExample {
 
 	// Enum inside a class
 	public enum Month {
-		Jan(1),
-		Feb(2),
-		Mrz(3),
-		Dez(12);
+		JAN(1),
+		FEB(2),
+		MRZ(3),
+		DEZ(12);
 
-		private int value;
+		private final int value;
 
 		// Enum Konstruktor ist private
-		private Month(int value) {
+		Month(int value) {
 			this.value = value;
 		}
 

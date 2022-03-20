@@ -1,4 +1,4 @@
-package datetime;
+package ch.ipt.demo.datetime;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-public class DateTimeTest {
+class DateTimeTest {
 
 	@Test
-	public void dateTimeTest() {
-		LocalDateTime local = LocalDateTime.of(2020,7,20,13,0,0,0);
-		ZonedDateTime zoned = ZonedDateTime.of(2020,7,20,13,0,0,0, ZoneId.of("UTC"));
+	void dateTimeTest() {
+		LocalDateTime local = LocalDateTime.of(2020, 7, 20, 13, 0, 0, 0);
+		ZonedDateTime zoned = ZonedDateTime.of(2020, 7, 20, 13, 0, 0, 0, ZoneId.of("UTC"));
 
 		System.out.println(local);
 		System.out.println(zoned);
@@ -27,7 +27,7 @@ public class DateTimeTest {
 	}
 
 	@Test
-	public void dateTest(){
+	void dateTest() {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
 		LocalDate ld = LocalDate.parse("01.04.1990", dateTimeFormatter);
@@ -40,14 +40,14 @@ public class DateTimeTest {
 	}
 
 	@Test
-	public void zonedTest(){
+	void zonedTest() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
 		ZonedDateTime dateTime = ZonedDateTime.parse("2020-07-14 00:00:00 UTC", formatter);
 		System.out.println(dateTime);
 	}
 
 	@Test
-	public void timezoneZTest() {
+	void timezoneZTest() {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss z");
@@ -65,7 +65,7 @@ public class DateTimeTest {
 		System.out.println(v1);
 		System.out.println(v2);
 
-		assertTrue(v1 == v2);
+		assertSame(v1, v2);
 		assertEquals(v1, v2);
 	}
 

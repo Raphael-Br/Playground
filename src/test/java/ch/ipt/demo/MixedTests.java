@@ -1,8 +1,10 @@
+package ch.ipt.demo;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import streams.Person;
+import ch.ipt.demo.streams.Person;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -19,7 +21,7 @@ class MixedTests {
 	// Streams Debugging
 	// Breakpoints
 	@Test
-	public void streamsDebugging() {
+	void streamsDebugging() {
 		List<String> myList = List.of("Markus", "HP", "Thomas", "Dominique", "Luca", "Marco", "Raphael");
 		List<String> myNewList = myList.stream()
 				.map(name -> name + " test")
@@ -31,13 +33,13 @@ class MixedTests {
 
 	// Inject Language
 	@Test
-	public void editNonJavaStrings() {
+	void editNonJavaStrings() {
 		String html = "";
 		System.out.println(html);
 	}
 
 	@Test
-	public void mutableArrayList() {
+	void mutableArrayList() {
 		ArrayList<String> myArrayList = new ArrayList<>(List.of("a", "b"));
 		myArrayList.add("c");
 		System.out.println(myArrayList);
@@ -45,7 +47,22 @@ class MixedTests {
 	}
 
 	@Test
-	public void stringFormatTest() {
+	void ComparatorTest() {
+		ArrayList<String> myList = new ArrayList<>(List.of("B", "A", "Z", "G"));
+		System.out.println(myList);
+
+		myList.sort(Comparator.naturalOrder());
+		System.out.println(myList);
+
+		myList.sort(Comparator.reverseOrder());
+		System.out.println(myList);
+
+		myList.sort(Comparator.comparing(String::toString));
+		System.out.println(myList);
+	}
+
+	@Test
+	void stringFormatTest() {
 		log.info(String.format("String: %s", "Test")); // String
 		log.info(String.format("Character: %c", 'c')); // Char
 		log.info(String.format("Integer: %d", 101)); // Integer
@@ -58,7 +75,7 @@ class MixedTests {
 	}
 
 	@Test
-	public void base64Test() {
+	void base64Test() {
 		String input = "Hallo Welt!";
 		System.out.println(input);
 
@@ -71,7 +88,7 @@ class MixedTests {
 	}
 
 	@Test
-	public void uuidTest() {
+	void uuidTest() {
 		UUID uuid = UUID.randomUUID();
 		System.out.println("UUID: " + uuid);
 		System.out.println("Type: " + uuid.getClass().getSimpleName());
@@ -110,22 +127,7 @@ class MixedTests {
 
 		System.out.println("*** AFTER FILTER:");
 		myList = myList.stream().filter(e -> e.contains("-V15")).collect(Collectors.toList());
-		myList.forEach(e -> System.out.println(e));
-	}
-
-	@Test
-	void ComparatorTest() {
-		List<String> myList = List.of("B", "A", "Z", "G");
-		System.out.println(myList);
-
-		myList.sort(Comparator.naturalOrder());
-		System.out.println(myList);
-
-		myList.sort(Comparator.reverseOrder());
-		System.out.println(myList);
-
-		myList.sort(Comparator.comparing(String::toString));
-		System.out.println(myList);
+		myList.forEach(System.out::println);
 	}
 
 	@Test

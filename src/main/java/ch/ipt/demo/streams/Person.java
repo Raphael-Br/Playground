@@ -1,4 +1,4 @@
-package streams;
+package ch.ipt.demo.streams;
 
 import lombok.Getter;
 import lombok.Setter;
