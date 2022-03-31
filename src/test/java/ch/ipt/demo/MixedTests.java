@@ -2,10 +2,19 @@ package ch.ipt.demo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.sun.source.util.DocTrees;
+import jdk.javadoc.doclet.DocletEnvironment;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import ch.ipt.demo.streams.Person;
 
+import javax.lang.model.SourceVersion;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
+import javax.tools.JavaFileManager;
+import javax.tools.JavaFileObject;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -13,30 +22,11 @@ import java.util.stream.Collectors;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 
 class MixedTests {
-
-	// Streams Debugging
-	// Breakpoints
-	@Test
-	void streamsDebugging() {
-		List<String> myList = List.of("Markus", "HP", "Thomas", "Dominique", "Luca", "Marco", "Raphael");
-		List<String> myNewList = myList.stream()
-				.map(name -> name + " test")
-				.filter(name -> name.startsWith("M"))
-				.sorted(Comparator.naturalOrder())
-				.collect(Collectors.toList());
-		System.out.println(myNewList);
-	}
-
-	// Inject Language
-	@Test
-	void editNonJavaStrings() {
-		String html = "";
-		System.out.println(html);
-	}
 
 	@Test
 	void mutableArrayList() {
@@ -71,7 +61,18 @@ class MixedTests {
 		log.info(String.format("Float: %f", 101.00)); // Float
 		log.info(String.format("Hexadecimal: %x", 101)); // Hexadecimal
 
-		log.info(String.format("SELECT IDENTIFIER FROM %%SICS%%.BUSINESS WHERE FORMER_IDENTIFIER = '%s'", "myTest")); // % Escape
+		// % Escape
+		log.info(String.format("SELECT IDENTIFIER FROM %%SICS%%.BUSINESS WHERE FORMER_IDENTIFIER = '%s'", "myTest"));
+
+		// PrintF
+		System.out.printf("Prints a %s string", "formatted");
+	}
+
+
+	@Test
+	void stringTest() {
+		String test = "Hello";
+		assertTrue(test.toLowerCase().startsWith("he"));
 	}
 
 	@Test
